@@ -3,21 +3,69 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AIApps from '@/components/AIApps';
 import AIAgent from '@/components/AIAgent';
+import Breadcrumb from '@/components/Breadcrumb';
 
 export const metadata: Metadata = {
   title: 'AI小程式 | AIJOB',
   description: '適用於各行各業的高效率 AI 智能體，從招募、行銷、內容生產到數據分析，提供全方位的企業級 AI 解決方案。',
+  alternates: {
+    canonical: '/apps',
+  },
   openGraph: {
     title: 'AI小程式 | AIJOB',
     description: '適用於各行各業的高效率 AI 智能體，從招募、行銷、內容生產到數據分析，提供全方位的企業級 AI 解決方案。',
+    url: 'https://aijob.com.tw/apps',
+  },
+};
+
+// AI 應用頁面結構化資料
+const appsStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'AIJOB AI 小程式',
+  description: '適用於各行各業的高效率 AI 智能體，從招募、行銷、內容生產到數據分析，提供全方位的企業級 AI 解決方案。',
+  url: 'https://aijob.com.tw/apps',
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: [
+      {
+        '@type': 'SoftwareApplication',
+        name: 'AI 獵才招募與文案大師',
+        applicationCategory: 'BusinessApplication',
+        description: '專為各行各業設計，一鍵生成高轉換率的招募職缺文案與企業品牌故事',
+      },
+      {
+        '@type': 'SoftwareApplication',
+        name: 'AI 短影音智能體',
+        applicationCategory: 'MultimediaApplication',
+        description: '全自動生成帳號定位、腳本選題與短影音內容，協助品牌快速獲客',
+      },
+      {
+        '@type': 'SoftwareApplication',
+        name: 'YT 頻道分析助手',
+        applicationCategory: 'AnalyticsApplication',
+        description: 'YouTube 頻道大數據分析，洞察競品策略與爆款關鍵字',
+      },
+    ],
   },
 };
 
 export default function AppsPage() {
   return (
-    <div className="min-h-screen bg-[#fafbfc] text-slate-900 selection:bg-indigo-100">
-      <Navbar />
-      <main>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(appsStructuredData) }}
+      />
+      <div className="min-h-screen bg-[#fafbfc] text-slate-900 selection:bg-indigo-100">
+        <Navbar />
+        <main>
+          <div className="max-w-7xl mx-auto px-4 pt-32 pb-8">
+            <Breadcrumb items={[
+              { name: '首頁', url: '/' },
+              { name: 'AI小程式', url: '/apps' },
+            ]} />
+          </div>
         {/* Hero Section */}
         <section className="relative overflow-hidden pt-40 pb-24 px-4 bg-white">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none">

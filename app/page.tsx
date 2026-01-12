@@ -26,10 +26,63 @@ const structuredData = {
   url: 'https://aijob.com.tw',
   logo: 'https://aijob.com.tw/image/aijoblogo.svg',
   description: '提供頂尖的客製化 AI 系統開發服務與實戰培訓課程',
-  sameAs: [],
+  sameAs: [
+    'https://www.facebook.com/profile.php?id=61577238907515',
+    'https://www.instagram.com/aijobschool',
+    'https://www.threads.com/@aijobschool',
+    'https://youtube.com/@aijobschool',
+  ],
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer service',
+    email: 'contact@aijob.com.tw',
+    telephone: '+886-2-1234-5678',
+    areaServed: 'TW',
+    availableLanguage: 'zh-TW',
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'TW',
+    addressLocality: '台北市',
+    addressRegion: '信義區',
+    streetAddress: '信義路五段 7 號',
+  },
+};
+
+// LocalBusiness 結構化資料
+const localBusinessData = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'AIJOB',
+  image: 'https://aijob.com.tw/image/aijoblogo.svg',
+  '@id': 'https://aijob.com.tw',
+  url: 'https://aijob.com.tw',
+  telephone: '+886-2-1234-5678',
+  priceRange: '$$',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '信義路五段 7 號',
+    addressLocality: '台北市',
+    addressRegion: '信義區',
+    postalCode: '110',
+    addressCountry: 'TW',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 25.0330,
+    longitude: 121.5654,
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+    ],
+    opens: '09:00',
+    closes: '18:00',
   },
 };
 
@@ -83,6 +136,10 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessData) }}
       />
       <script
         type="application/ld+json"

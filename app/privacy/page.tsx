@@ -6,9 +6,17 @@ import AIAgent from '@/components/AIAgent';
 export const metadata: Metadata = {
   title: '隱私權政策 | AIJOB',
   description: 'AIJOB 隱私權政策，說明我們如何收集、使用和保護您的個人資料。',
+  alternates: {
+    canonical: '/privacy',
+  },
   openGraph: {
     title: '隱私權政策 | AIJOB',
     description: 'AIJOB 隱私權政策，說明我們如何收集、使用和保護您的個人資料。',
+    url: 'https://aijob.com.tw/privacy',
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

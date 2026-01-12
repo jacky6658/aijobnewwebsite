@@ -3,13 +3,18 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CourseParser from '@/components/CourseParser';
 import AIAgent from '@/components/AIAgent';
+import Breadcrumb from '@/components/Breadcrumb';
 
 export const metadata: Metadata = {
   title: '實戰培訓 | AIJOB',
   description: '精選 AI 實戰課程，從入門到進階，全面提升您的 AI 應用能力。包含 AI 自動化行銷、ChatGPT 應用、短影音智能體等課程。',
+  alternates: {
+    canonical: '/courses',
+  },
   openGraph: {
     title: '實戰培訓 | AIJOB',
     description: '精選 AI 實戰課程，從入門到進階，全面提升您的 AI 應用能力。包含 AI 自動化行銷、ChatGPT 應用、短影音智能體等課程。',
+    url: 'https://aijob.com.tw/courses',
   },
 };
 
@@ -67,8 +72,14 @@ export default function CoursesPage() {
       <div className="min-h-screen bg-[#fafbfc] text-slate-900 selection:bg-indigo-100">
         <Navbar />
         <main>
+          <div className="max-w-7xl mx-auto px-4 pt-32 pb-8">
+            <Breadcrumb items={[
+              { name: '首頁', url: '/' },
+              { name: '實戰培訓', url: '/courses' },
+            ]} />
+          </div>
           {/* Hero Section */}
-          <section className="relative overflow-hidden pt-40 pb-24 px-4 bg-white">
+          <section className="relative overflow-hidden pt-8 pb-24 px-4 bg-white">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none">
               <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-indigo-50 rounded-full blur-[120px] opacity-60"></div>
               <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-cyan-50 rounded-full blur-[120px] opacity-40"></div>

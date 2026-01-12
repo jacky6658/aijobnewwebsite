@@ -1,9 +1,8 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { gemini } from '../services/geminiService';
 import { ChatMessage } from '../types';
-import { MessageCircle, X, Send, Bot } from 'lucide-react';
+import { MessageCircle, X, Send, Bot, ExternalLink } from 'lucide-react';
 
 const AIAgent: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,10 +27,31 @@ const AIAgent: React.FC = () => {
     setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
     setIsLoading(true);
 
-    const response = await gemini.chat(messages, userMsg);
-    
-    setMessages(prev => [...prev, { role: 'model', text: response }]);
-    setIsLoading(false);
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          history: messages,
+          message: userMsg,
+        }),
+      });
+
+      const data = await res.json();
+      
+      if (res.ok) {
+        setMessages(prev => [...prev, { role: 'model', text: data.text, hasLinks: data.hasLinks }]);
+      } else {
+        setMessages(prev => [...prev, { role: 'model', text: data.message || '發生錯誤，請稍後再試。', hasLinks: true }]);
+      }
+    } catch (error) {
+      console.error('Chat error:', error);
+      setMessages(prev => [...prev, { role: 'model', text: '連線錯誤，請稍後再試。', hasLinks: false }]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -55,17 +75,94 @@ const AIAgent: React.FC = () => {
           </div>
 
           <div ref={scrollRef} className="flex-grow overflow-y-auto p-6 space-y-6 bg-slate-50/50">
-            {messages.map((msg, idx) => (
-              <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-medium ${
-                  msg.role === 'user' 
-                    ? 'bg-indigo-600 text-white rounded-tr-none shadow-xl shadow-indigo-600/10' 
-                    : 'bg-white text-slate-700 border border-slate-100 rounded-tl-none shadow-sm'
-                }`}>
-                  {msg.text}
+            {messages.map((msg, idx) => {
+              // 提取訊息中的連結
+              const urlRegex = /(https?:\/\/[^\s]+)/g;
+              const hasLinks = (msg as any).hasLinks || urlRegex.test(msg.text);
+              
+              // 解析 Markdown 格式的文字
+              const parseMessage = (text: string) => {
+                const parts: (string | { type: 'link'; url: string; text: string })[] = [];
+                let lastIndex = 0;
+                let match;
+                
+                while ((match = urlRegex.exec(text)) !== null) {
+                  // 添加連結前的文字
+                  if (match.index > lastIndex) {
+                    const beforeText = text.substring(lastIndex, match.index);
+                    if (beforeText.trim()) {
+                      parts.push(beforeText);
+                    }
+                  }
+                  
+                  // 添加連結
+                  const url = match[0];
+                  const isLineLink = url.includes('lin.ee');
+                  const isCourseLink = url.includes('ppa.tw');
+                  
+                  let linkText = '🔗 前往連結';
+                  if (isLineLink) linkText = '📱 聯絡我們';
+                  else if (isCourseLink) linkText = '📚 立即報名';
+                  
+                  parts.push({ type: 'link', url, text: linkText });
+                  lastIndex = urlRegex.lastIndex;
+                }
+                
+                // 添加剩餘文字
+                if (lastIndex < text.length) {
+                  const remaining = text.substring(lastIndex);
+                  if (remaining.trim()) {
+                    parts.push(remaining);
+                  }
+                }
+                
+                return parts.length > 0 ? parts : [text];
+              };
+              
+              const messageParts = msg.role === 'model' && hasLinks ? parseMessage(msg.text) : [msg.text];
+              
+              return (
+                <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                  <div className={`max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-medium ${
+                    msg.role === 'user' 
+                      ? 'bg-indigo-600 text-white rounded-tr-none shadow-xl shadow-indigo-600/10' 
+                      : 'bg-white text-slate-700 border border-slate-100 rounded-tl-none shadow-sm'
+                  }`}>
+                    <div className="space-y-3">
+                      {messageParts.map((part, i) => {
+                        if (typeof part === 'object' && part.type === 'link') {
+                          const isLineLink = part.url.includes('lin.ee');
+                          const isCourseLink = part.url.includes('ppa.tw');
+                          return (
+                            <a
+                              key={i}
+                              href={part.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs transition-all ${
+                                isLineLink
+                                  ? 'bg-green-500 hover:bg-green-600 text-white shadow-lg hover:shadow-xl active:scale-95'
+                                  : isCourseLink
+                                  ? 'bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg hover:shadow-xl active:scale-95'
+                                  : 'bg-slate-700 hover:bg-slate-800 text-white shadow-lg hover:shadow-xl active:scale-95'
+                              }`}
+                            >
+                              {part.text}
+                              <ExternalLink className="w-3.5 h-3.5" />
+                            </a>
+                          );
+                        }
+                        return (
+                          <span key={i} className="whitespace-pre-wrap block">
+                            {typeof part === 'string' ? part : part}
+                          </span>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
             {isLoading && (
               <div className="flex justify-start">
                 <div className="bg-white p-4 rounded-2xl border border-slate-100 rounded-tl-none animate-pulse">

@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
                 <span className="text-[18px] leading-none">@</span>
               </a>
               <a
-                href="https://www.youtube.com/@AngentAi"
+                href="https://youtube.com/@aijobschool?si=yDZOZEVJN7SrPVYU"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-slate-100 hover:bg-indigo-600 text-slate-600 hover:text-white rounded-xl flex items-center justify-center transition-all"

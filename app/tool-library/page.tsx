@@ -3,23 +3,59 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ToolLibrary from '@/components/ToolLibrary';
 import AIAgent from '@/components/AIAgent';
+import Breadcrumb from '@/components/Breadcrumb';
 
 export const metadata: Metadata = {
   title: 'AI工具庫 | AIJOB',
   description: '整合全球最頂尖的 AI 應用工具，從寫作、設計、開發到行銷，一鍵啟動您的智能轉型。',
+  alternates: {
+    canonical: '/tool-library',
+  },
   openGraph: {
     title: 'AI工具庫 | AIJOB',
     description: '整合全球最頂尖的 AI 應用工具，從寫作、設計、開發到行銷，一鍵啟動您的智能轉型。',
+    url: 'https://aijob.com.tw/tool-library',
+  },
+};
+
+// 工具庫頁面結構化資料
+const toolLibraryStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'AIJOB AI 工具庫',
+  description: '整合全球最頂尖的 AI 應用工具，從寫作、設計、開發到行銷，一鍵啟動您的智能轉型。',
+  url: 'https://aijob.com.tw/tool-library',
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: [
+      {
+        '@type': 'SoftwareApplication',
+        name: 'AI 工具庫',
+        applicationCategory: 'BusinessApplication',
+        description: '整合全球最頂尖的 AI 應用工具',
+      },
+    ],
   },
 };
 
 export default function ToolLibraryPage() {
   return (
-    <div className="min-h-screen bg-[#fafbfc] text-slate-900 selection:bg-indigo-100">
-      <Navbar />
-      <main>
-        {/* Hero Section */}
-        <section className="relative overflow-hidden pt-40 pb-24 px-4 bg-white">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(toolLibraryStructuredData) }}
+      />
+      <div className="min-h-screen bg-[#fafbfc] text-slate-900 selection:bg-indigo-100">
+        <Navbar />
+        <main>
+          <div className="max-w-7xl mx-auto px-4 pt-32 pb-8">
+            <Breadcrumb items={[
+              { name: '首頁', url: '/' },
+              { name: 'AI工具庫', url: '/tool-library' },
+            ]} />
+          </div>
+          {/* Hero Section */}
+          <section className="relative overflow-hidden pt-8 pb-24 px-4 bg-white">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none">
             <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-indigo-50 rounded-full blur-[120px] opacity-60"></div>
             <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-cyan-50 rounded-full blur-[120px] opacity-40"></div>
@@ -193,8 +229,9 @@ export default function ToolLibraryPage() {
           </div>
         </section>
       </main>
-      <Footer />
-      <AIAgent />
-    </div>
+        <Footer />
+        <AIAgent />
+      </div>
+    </>
   );
 }

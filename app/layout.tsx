@@ -23,6 +23,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  icons: {
+    icon: '/image/aijoblogo.svg',
+    apple: '/image/aijoblogo.svg',
+  },
   openGraph: {
     type: 'website',
     locale: 'zh_TW',
@@ -32,7 +36,7 @@ export const metadata: Metadata = {
     description: '提供頂尖的客製化 AI 系統開發服務，透過實戰課程手把手教您掌握 AI 智能體開發、招募優化、內容行銷等核心技能。',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/image/aijoblogo.svg',
         width: 1200,
         height: 630,
         alt: 'AIJOB - AI 智能體開發與培訓',
@@ -43,7 +47,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'AIJOB - 客製化 AI 系統與實戰培訓',
     description: '提供頂尖的客製化 AI 系統開發服務，透過實戰課程手把手教您掌握 AI 智能體開發、招募優化、內容行銷等核心技能。',
-    images: ['/og-image.jpg'],
+    images: ['/image/aijoblogo.svg'],
   },
   robots: {
     index: true,

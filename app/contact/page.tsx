@@ -3,21 +3,55 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ContactForm from '@/components/ContactForm';
 import AIAgent from '@/components/AIAgent';
+import Breadcrumb from '@/components/Breadcrumb';
 
 export const metadata: Metadata = {
   title: '聯絡我們 | AIJOB',
   description: '有任何問題或需求？歡迎透過表單或直接聯繫我們，我們很樂意為您提供 AI 系統開發與培訓服務的協助。',
+  alternates: {
+    canonical: '/contact',
+  },
   openGraph: {
     title: '聯絡我們 | AIJOB',
     description: '有任何問題或需求？歡迎透過表單或直接聯繫我們，我們很樂意為您提供 AI 系統開發與培訓服務的協助。',
+    url: 'https://aijob.com.tw/contact',
+  },
+};
+
+// 聯絡頁面結構化資料
+const contactStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  mainEntity: {
+    '@type': 'Organization',
+    name: 'AIJOB',
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer service',
+      email: 'contact@aijob.com.tw',
+      telephone: '+886-2-1234-5678',
+      areaServed: 'TW',
+      availableLanguage: 'zh-TW',
+    },
   },
 };
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-[#fafbfc] text-slate-900 selection:bg-indigo-100">
-      <Navbar />
-      <main>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactStructuredData) }}
+      />
+      <div className="min-h-screen bg-[#fafbfc] text-slate-900 selection:bg-indigo-100">
+        <Navbar />
+        <main>
+          <div className="max-w-7xl mx-auto px-4 pt-32 pb-8">
+            <Breadcrumb items={[
+              { name: '首頁', url: '/' },
+              { name: '聯絡我們', url: '/contact' },
+            ]} />
+          </div>
         {/* Hero Section */}
         <section className="relative overflow-hidden pt-40 pb-24 px-4 bg-white">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none">

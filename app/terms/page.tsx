@@ -6,9 +6,17 @@ import AIAgent from '@/components/AIAgent';
 export const metadata: Metadata = {
   title: '服務條款 | AIJOB',
   description: 'AIJOB 服務條款，說明使用我們服務的條款和條件。',
+  alternates: {
+    canonical: '/terms',
+  },
   openGraph: {
     title: '服務條款 | AIJOB',
     description: 'AIJOB 服務條款，說明使用我們服務的條款和條件。',
+    url: 'https://aijob.com.tw/terms',
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

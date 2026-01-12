@@ -10,6 +10,8 @@ const nextConfig = {
   generateBuildId: async () => {
     return 'aijob-' + Date.now();
   },
+  // 增加構建超時時間
+  staticPageGenerationTimeout: 120,
 };
 
 module.exports = nextConfig;

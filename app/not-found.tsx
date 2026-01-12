@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Home, ArrowLeft } from 'lucide-react';
+import BackButton from '@/components/BackButton';
 
 export const metadata: Metadata = {
   title: '404 - 頁面不存在 | AIJOB',
@@ -28,16 +28,12 @@ export default function NotFound() {
               href="/"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-900 text-white rounded-xl font-black hover:bg-indigo-600 transition-all shadow-xl active:scale-95"
             >
-              <Home className="w-5 h-5" />
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
               回到首頁
             </Link>
-            <button
-              onClick={() => window.history.back()}
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-slate-600 rounded-xl font-black border border-slate-200 hover:bg-slate-50 transition-all active:scale-95"
-            >
-              <ArrowLeft className="w-5 h-5" />
-              返回上一頁
-            </button>
+            <BackButton />
           </div>
 
           <div className="pt-12 space-y-4">

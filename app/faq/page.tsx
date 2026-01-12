@@ -112,6 +112,7 @@ export default function FAQPage() {
       </main>
       <Footer />
       <AIAgent />
-    </div>
+      </div>
+    </>
   );
 }

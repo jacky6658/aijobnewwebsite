@@ -82,6 +82,7 @@ export default function ContactPage() {
       </main>
       <Footer />
       <AIAgent />
-    </div>
+      </div>
+    </>
   );
 }

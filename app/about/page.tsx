@@ -282,6 +282,7 @@ export default function AboutPage() {
       </main>
       <Footer />
       <AIAgent />
-    </div>
+      </div>
+    </>
   );
 }

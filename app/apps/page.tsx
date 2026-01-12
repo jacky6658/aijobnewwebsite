@@ -263,6 +263,7 @@ export default function AppsPage() {
       </main>
       <Footer />
       <AIAgent />
-    </div>
+      </div>
+    </>
   );
 }

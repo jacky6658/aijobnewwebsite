@@ -152,9 +152,10 @@ const AIAgent: React.FC = () => {
                             </a>
                           );
                         }
+                        // TypeScript 知道這裡 part 一定是 string
                         return (
                           <span key={i} className="whitespace-pre-wrap block">
-                            {typeof part === 'string' ? part : part}
+                            {part}
                           </span>
                         );
                       })}

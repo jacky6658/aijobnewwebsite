@@ -81,7 +81,7 @@ const AIAgent: React.FC = () => {
               const hasLinks = (msg as any).hasLinks || urlRegex.test(msg.text);
               
               // 解析 Markdown 格式的文字
-              const parseMessage = (text: string) => {
+              const parseMessage = (text: string): (string | { type: 'link'; url: string; text: string })[] => {
                 const parts: (string | { type: 'link'; url: string; text: string })[] = [];
                 let lastIndex = 0;
                 let match;
@@ -119,6 +119,11 @@ const AIAgent: React.FC = () => {
                 return parts.length > 0 ? parts : [text];
               };
               
+              // 類型守衛函數
+              const isLinkPart = (part: string | { type: 'link'; url: string; text: string }): part is { type: 'link'; url: string; text: string } => {
+                return typeof part === 'object' && part !== null && 'type' in part && part.type === 'link';
+              };
+              
               const messageParts = msg.role === 'model' && hasLinks ? parseMessage(msg.text) : [msg.text];
               
               return (
@@ -130,7 +135,7 @@ const AIAgent: React.FC = () => {
                   }`}>
                     <div className="space-y-3">
                       {messageParts.map((part, i) => {
-                        if (typeof part === 'object' && part.type === 'link') {
+                        if (isLinkPart(part)) {
                           const isLineLink = part.url.includes('lin.ee');
                           const isCourseLink = part.url.includes('ppa.tw');
                           return (
@@ -152,7 +157,7 @@ const AIAgent: React.FC = () => {
                             </a>
                           );
                         }
-                        // TypeScript 知道這裡 part 一定是 string
+                        // 現在 TypeScript 知道這裡 part 一定是 string
                         return (
                           <span key={i} className="whitespace-pre-wrap block">
                             {part}

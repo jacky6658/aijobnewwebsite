@@ -1,0 +1,29 @@
+{
+  "name": "aijob-website-nextjs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AIJOB - 客製化 AI 系統與實戰培訓平台 (Next.js SEO 優化版)",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@google/genai": "^1.35.0",
+    "lucide-react": "^0.473.0",
+    "next": "^14.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "recharts": "^3.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.16",
+    "typescript": "^5.7.2"
+  }
+}

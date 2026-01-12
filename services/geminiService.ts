@@ -3,9 +3,19 @@ import { ChatMessage } from "../types";
 
 export class GeminiService {
   private ai: GoogleGenAI;
+  private hasApiKey: boolean;
 
   constructor() {
-    this.ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+    // Next.js 環境變數：只在服務端可用
+    const apiKey = process.env.API_KEY || '';
+    this.hasApiKey = !!apiKey;
+    
+    if (this.hasApiKey) {
+      this.ai = new GoogleGenAI({ apiKey });
+    } else {
+      // 如果沒有 API Key，創建一個空的實例（不會實際調用）
+      this.ai = new GoogleGenAI({ apiKey: '' });
+    }
   }
 
   // 檢查是否為課程相關問題
@@ -42,6 +52,11 @@ export class GeminiService {
       
       if (this.isServiceQuestion(message)) {
         return this.getServiceResponse(message);
+      }
+
+      // 如果沒有 API Key，返回提示訊息
+      if (!this.hasApiKey) {
+        return "抱歉，AI 服務目前無法使用。請聯繫我們獲取協助：https://lin.ee/ZTgJbYG";
       }
 
       // 一般問題使用 AI 回覆
@@ -194,6 +209,10 @@ export class GeminiService {
   }
 
   async analyzeJobMarket(trends: any[]): Promise<string> {
+    if (!this.hasApiKey) {
+      return "目前無法取得分析數據，請聯繫我們：https://lin.ee/ZTgJbYG";
+    }
+    
     try {
       const response = await this.ai.models.generateContent({
         model: 'gemini-3-flash-preview',

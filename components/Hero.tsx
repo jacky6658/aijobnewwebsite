@@ -30,10 +30,14 @@ const Hero: React.FC = () => {
       speedY: number;
       color: string;
       opacity: number;
+      canvasWidth: number;
+      canvasHeight: number;
 
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+      constructor(canvasWidth: number, canvasHeight: number) {
+        this.canvasWidth = canvasWidth;
+        this.canvasHeight = canvasHeight;
+        this.x = Math.random() * canvasWidth;
+        this.y = Math.random() * canvasHeight;
         this.size = Math.random() * 3 + 1;
         this.speedX = (Math.random() - 0.5) * 0.5;
         this.speedY = (Math.random() - 0.5) * 0.5;
@@ -50,8 +54,8 @@ const Hero: React.FC = () => {
         this.x += this.speedX;
         this.y += this.speedY;
 
-        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+        if (this.x < 0 || this.x > this.canvasWidth) this.speedX *= -1;
+        if (this.y < 0 || this.y > this.canvasHeight) this.speedY *= -1;
       }
 
       draw() {
@@ -69,7 +73,7 @@ const Hero: React.FC = () => {
     const particles: Particle[] = [];
     const particleCount = 50;
     for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
+      particles.push(new Particle(canvas.width, canvas.height));
     }
 
     // 動畫循環

@@ -62,24 +62,25 @@ export default function ToolLibraryPage() {
             </div>
 
             <div className="relative max-w-5xl mx-auto text-center space-y-8">
-            <div className="space-y-6">
-              <span className="inline-flex items-center gap-2 px-5 py-2 bg-indigo-50 text-indigo-600 rounded-2xl border border-indigo-100 text-[10px] font-black uppercase tracking-[0.3em] shadow-sm">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-600"></span>
+              <div className="space-y-6">
+                <span className="inline-flex items-center gap-2 px-5 py-2 bg-indigo-50 text-indigo-600 rounded-2xl border border-indigo-100 text-[10px] font-black uppercase tracking-[0.3em] shadow-sm">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-600"></span>
+                  </span>
+                  AI Ecosystem
                 </span>
-                AI Ecosystem
-              </span>
-              <h1 className="text-5xl md:text-7xl font-black leading-[1.1] tracking-tighter text-slate-900">
-                AIJob <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-500">
-                  萬用工具庫
-                </span>
-              </h1>
-              <p className="text-slate-500 text-lg md:text-xl max-w-2xl mx-auto font-medium leading-relaxed">
-                整合全球最頂尖的 AI 應用，從寫作到開發，<br />
-                一鍵啟動您的智能轉型。
-              </p>
+                <h1 className="text-5xl md:text-7xl font-black leading-[1.1] tracking-tighter text-slate-900">
+                  AIJob <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-500">
+                    萬用工具庫
+                  </span>
+                </h1>
+                <p className="text-slate-500 text-lg md:text-xl max-w-2xl mx-auto font-medium leading-relaxed">
+                  整合全球最頂尖的 AI 應用，從寫作到開發，<br />
+                  一鍵啟動您的智能轉型。
+                </p>
+              </div>
             </div>
           </section>
 
@@ -227,7 +228,7 @@ export default function ToolLibraryPage() {
             </div>
           </div>
         </section>
-      </main>
+        </main>
         <Footer />
         <AIAgent />
       </div>

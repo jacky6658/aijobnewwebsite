@@ -100,7 +100,7 @@ export const MENTORS: Mentor[] = [
     name: 'Jacky',
     title: 'AI 應用專家',
     description: '專注於 AI 應用開發與實戰教學，擁有豐富的 AI 工具整合經驗，幫助企業和個人實現 AI 自動化轉型。',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400',
+    avatar: '/image/jacky.jpg',
     socials: {
       instagram: '#',
       website: 'https://portaly.cc/JackyChen'

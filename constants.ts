@@ -78,10 +78,10 @@ export const MENTORS: Mentor[] = [
     name: 'Willy 柏燁',
     title: '科技教育講師',
     description: '專注於科技教育與創新應用，擁有跨領域教學與實作經驗，擅長以淺顯易懂方式帶領學員理解 AI 與自動化。',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400',
+    avatar: '/image/willy.jpeg',
     socials: {
       instagram: '#',
-      website: '#'
+      website: 'https://brickverse.com.tw/'
     }
   },
   {
@@ -89,10 +89,21 @@ export const MENTORS: Mentor[] = [
     name: 'Nick',
     title: 'ZN Studio 創意實踐者',
     description: '來自 ZN Studio 的創意實踐者，專注於 AI 與內容生產流程，累積多元合作經驗，擅長把工具串接為高效能的製作線，打造穩定輸出。',
-    avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=400',
+    avatar: '/image/nick.jpeg',
     socials: {
       instagram: '#',
-      twitter: '#'
+      website: 'https://portaly.cc/zn.studio'
+    }
+  },
+  {
+    id: 'jacky',
+    name: 'Jacky',
+    title: 'AI 應用專家',
+    description: '專注於 AI 應用開發與實戰教學，擁有豐富的 AI 工具整合經驗，幫助企業和個人實現 AI 自動化轉型。',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400',
+    socials: {
+      instagram: '#',
+      website: 'https://portaly.cc/JackyChen'
     }
   }
 ];

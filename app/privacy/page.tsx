@@ -118,10 +118,10 @@ export default function PrivacyPage() {
                     <strong className="text-slate-900">電子郵件：</strong> privacy@aijob.com.tw
                   </p>
                   <p className="text-slate-600 mb-2">
-                    <strong className="text-slate-900">電話：</strong> +886-2-1234-5678
+                    <strong className="text-slate-900">電話：</strong> 02-6605-7111
                   </p>
                   <p className="text-slate-600">
-                    <strong className="text-slate-900">地址：</strong> 台北市信義區信義路五段 7 號
+                    <strong className="text-slate-900">地址：</strong> 台北市內湖區康寧路三段54號之7 3樓
                   </p>
                 </div>
               </section>

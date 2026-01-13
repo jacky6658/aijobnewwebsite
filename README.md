@@ -132,7 +132,7 @@ Next.js 可以部署到任何支援 Node.js 的平台：
 ## 📞 聯絡我們
 
 - 網站：https://aijob.com.tw
-- Email：contact@aijob.com.tw
+- Email：aiagentg888@gmail.com
 
 ---
 

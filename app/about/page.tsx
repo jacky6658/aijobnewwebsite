@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import Mentors from '@/components/Mentors';
 import AIAgent from '@/components/AIAgent';
 import Breadcrumb from '@/components/Breadcrumb';
+import Counter from '@/components/Counter';
 
 export const metadata: Metadata = {
   title: '關於我們 | AIJOB',
@@ -32,8 +33,8 @@ const aboutStructuredData = {
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer service',
-      email: 'contact@aijob.com.tw',
-      telephone: '+886-2-1234-5678',
+      email: 'aiagentg888@gmail.com',
+      telephone: '+886-2-6605-7111',
     },
   },
 };
@@ -135,7 +136,7 @@ export default function AboutPage() {
                 在 AI 技術快速發展的時代，我們發現許多企業和個人對 AI 應用充滿期待，卻因為技術門檻而卻步。AIJOB 的創立，正是為了打破這個障礙。
               </p>
               <p>
-                我們相信，AI 不應該是少數人的專利，而是每個人都能掌握的工具。透過客製化的 AI 系統開發和實戰培訓，我們幫助企業提升營運效率，也幫助個人提升職場競爭力。
+                AIJOB 專注於提供客製化 AI 系統開發服務與實戰培訓課程。我們不提供人力招募服務，而是幫助企業和個人透過 AI 技術提升營運效率與競爭力。我們相信，AI 不應該是少數人的專利，而是每個人都能掌握的工具。
               </p>
               <p>
                 從內容生成工具到數據分析系統，從自動化行銷到智能客服，我們已經協助超過數百家企業實現 AI 轉型，涵蓋製造業、服務業、零售業、科技業等各行各業，並培訓了數千名學員掌握 AI 應用技能。
@@ -258,19 +259,27 @@ export default function AboutPage() {
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div className="text-center">
-                <div className="text-5xl md:text-6xl font-black text-indigo-600 mb-2">500+</div>
+                <div className="text-5xl md:text-6xl font-black text-indigo-600 mb-2">
+                  <Counter end={500} suffix="+" duration={2000} />
+                </div>
                 <div className="text-slate-600 font-bold text-sm uppercase tracking-wider">企業客戶</div>
               </div>
               <div className="text-center">
-                <div className="text-5xl md:text-6xl font-black text-cyan-600 mb-2">3000+</div>
+                <div className="text-5xl md:text-6xl font-black text-cyan-600 mb-2">
+                  <Counter end={3000} suffix="+" duration={2500} />
+                </div>
                 <div className="text-slate-600 font-bold text-sm uppercase tracking-wider">培訓學員</div>
               </div>
               <div className="text-center">
-                <div className="text-5xl md:text-6xl font-black text-purple-600 mb-2">1000+</div>
+                <div className="text-5xl md:text-6xl font-black text-purple-600 mb-2">
+                  <Counter end={1000} suffix="+" duration={2200} />
+                </div>
                 <div className="text-slate-600 font-bold text-sm uppercase tracking-wider">AI 專案</div>
               </div>
               <div className="text-center">
-                <div className="text-5xl md:text-6xl font-black text-emerald-600 mb-2">98%</div>
+                <div className="text-5xl md:text-6xl font-black text-emerald-600 mb-2">
+                  <Counter end={98} suffix="%" duration={1800} decimals={0} />
+                </div>
                 <div className="text-slate-600 font-bold text-sm uppercase tracking-wider">滿意度</div>
               </div>
             </div>

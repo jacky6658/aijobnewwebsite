@@ -1,6 +1,7 @@
 import React from 'react';
 import { TOOL_CATEGORIES } from '../constants';
 import * as Icons from 'lucide-react';
+import { ExternalLink, ArrowRight } from 'lucide-react';
 
 const DynamicIcon = ({ name, className }: { name: string; className?: string }) => {
   const iconName = name.split('-').map(part => part.charAt(0).toUpperCase() + part.slice(1)).join('') as keyof typeof Icons;
@@ -33,6 +34,19 @@ const ToolLibrary: React.FC = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* 前往工具庫按鈕 */}
+        <div className="flex justify-center pt-8">
+          <a
+            href="https://aitools.aijob.com.tw/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-black text-base transition-all shadow-xl hover:shadow-2xl active:scale-95"
+          >
+            <span>探索完整工具庫</span>
+            <ArrowRight className="w-5 h-5" />
+          </a>
         </div>
       </div>
     </section>

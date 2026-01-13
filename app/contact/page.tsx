@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ContactForm from '@/components/ContactForm';
+import OnlineQuestionnaire from '@/components/OnlineQuestionnaire';
 import AIAgent from '@/components/AIAgent';
 import Breadcrumb from '@/components/Breadcrumb';
 
@@ -28,8 +29,8 @@ const contactStructuredData = {
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer service',
-      email: 'contact@aijob.com.tw',
-      telephone: '+886-2-1234-5678',
+      email: 'aiagentg888@gmail.com',
+      telephone: '+886-2-6605-7111',
       areaServed: 'TW',
       availableLanguage: 'zh-TW',
     },
@@ -78,6 +79,7 @@ export default function ContactPage() {
           </div>
         </section>
 
+        <OnlineQuestionnaire />
         <ContactForm />
       </main>
       <Footer />

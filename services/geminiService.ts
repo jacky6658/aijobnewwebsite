@@ -70,7 +70,7 @@ export class GeminiService {
           { role: 'user', parts: [{ text: message }] }
         ],
         config: {
-          systemInstruction: `你現在是 AIJOB 的首席顧問。AIJOB 不是人力銀行，而是一個專注於『客製化 AI 系統開發』與『AI 實戰培訓』的平台。
+          systemInstruction: `你現在是 AIJob 小助手。AIJOB 不是人力銀行，而是一個專注於『客製化 AI 系統開發』與『AI 實戰培訓』的平台。
 
 【關於課程】
 我們提供以下三門精選課程：
@@ -202,8 +202,8 @@ export class GeminiService {
 
 **立即聯繫我們：**
 📱 LINE：https://lin.ee/ZTgJbYG
-📧 Email：contact@aijob.com.tw
-📞 電話：+886-2-1234-5678
+📧 Email：aiagentg888@gmail.com
+📞 電話：02-6605-7111
 
 我們會盡快為您提供專業的諮詢服務！`;
   }

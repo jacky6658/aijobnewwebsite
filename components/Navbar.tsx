@@ -18,8 +18,7 @@ const Navbar: React.FC = () => {
   const navLinks = [
     { name: '首頁', href: '/' },
     { name: '關於我們', href: '/about' },
-    { name: 'AI工具庫', href: '/tool-library' },
-    { name: 'AI小程式', href: '/apps' },
+    { name: 'AI工具與應用', href: '/tools' },
     { name: '實戰培訓', href: '/courses' },
     { name: '常見問題', href: '/faq' },
   ];
@@ -51,7 +50,7 @@ const Navbar: React.FC = () => {
               <Link 
                 key={link.name}
                 href={link.href} 
-                className="text-slate-600 hover:text-indigo-600 font-bold text-sm transition-colors"
+                className="text-slate-600 hover:text-indigo-600 font-bold text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 rounded-lg px-2 py-1"
               >
                 {link.name}
               </Link>
@@ -60,7 +59,7 @@ const Navbar: React.FC = () => {
               href="https://lin.ee/ZTgJbYG"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-indigo-600 text-white px-6 py-2.5 rounded-xl font-black text-sm hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100 active:scale-95 inline-block"
+              className="bg-indigo-600 text-white px-6 py-2.5 rounded-xl font-black text-sm hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100 active:scale-95 inline-flex items-center justify-center min-h-[44px] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               聯絡我們
             </a>
@@ -69,8 +68,9 @@ const Navbar: React.FC = () => {
           <div className="md:hidden flex items-center">
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-slate-600 p-2 focus:outline-none"
-              aria-label="Toggle menu"
+              className="text-slate-600 p-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 rounded-lg min-w-[44px] min-h-[44px] flex items-center justify-center"
+              aria-label={isMenuOpen ? "關閉選單" : "開啟選單"}
+              aria-expanded={isMenuOpen}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {isMenuOpen ? (
@@ -93,7 +93,7 @@ const Navbar: React.FC = () => {
               key={link.name}
               href={link.href}
               onClick={() => setIsMenuOpen(false)}
-              className="block px-3 py-4 text-base font-bold text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg"
+              className="block px-3 py-4 text-base font-bold text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 min-h-[44px] flex items-center"
             >
               {link.name}
             </Link>
@@ -104,7 +104,7 @@ const Navbar: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsMenuOpen(false)}
-              className="w-full bg-indigo-600 text-white py-3 rounded-xl font-black text-center block"
+              className="w-full bg-indigo-600 text-white py-3 rounded-xl font-black text-center block min-h-[44px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               聯絡我們
             </a>

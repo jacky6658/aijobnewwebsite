@@ -7,7 +7,7 @@ import { MessageCircle, X, Send, Bot, ExternalLink } from 'lucide-react';
 const AIAgent: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: 'model', text: '您好！我是您的 AI 應用顧問。不論您是在尋找適合的 AI 工具、想開發客製化智能體，或是想參加實戰課程，我都能為您提供建議。請教您今天有什麼需求嗎？' }
+    { role: 'model', text: '您好！我是您的 AIJob 小助手。不論您是在尋找適合的 AI 工具、想開發客製化智能體，或是想參加實戰課程，我都能為您提供建議。請教您今天有什麼需求嗎？' }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -65,8 +65,8 @@ const AIAgent: React.FC = () => {
                 <Bot className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h4 className="font-bold text-sm">AI 應用顧問</h4>
-                <p className="text-[10px] text-indigo-100 uppercase tracking-widest font-black">AI Solutions Consultant</p>
+                <h4 className="font-bold text-sm">AIJob 小助手</h4>
+                <p className="text-[10px] text-indigo-100 uppercase tracking-widest font-black">AIJob Assistant</p>
               </div>
             </div>
             <button onClick={() => setIsOpen(false)} className="hover:bg-white/10 p-2 rounded-full transition-colors" aria-label="Close chat">
@@ -80,37 +80,111 @@ const AIAgent: React.FC = () => {
               const urlRegex = /(https?:\/\/[^\s]+)/g;
               const hasLinks = (msg as any).hasLinks || urlRegex.test(msg.text);
               
-              // 解析 Markdown 格式的文字
-              const parseMessage = (text: string): (string | { type: 'link'; url: string; text: string })[] => {
-                const parts: (string | { type: 'link'; url: string; text: string })[] = [];
-                let lastIndex = 0;
-                let match;
+              // 解析 Markdown 格式的文字（處理粗體和連結）
+              const parseMessage = (text: string): (string | { type: 'link'; url: string; text: string } | { type: 'bold'; text: string })[] => {
+                const parts: (string | { type: 'link'; url: string; text: string } | { type: 'bold'; text: string })[] = [];
+                
+                // 先處理 Markdown 連結格式 [文字](URL)
+                const markdownLinkRegex = /\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g;
+                const markdownLinks: Array<{ index: number; length: number; text: string; url: string }> = [];
+                let mdMatch;
+                
+                while ((mdMatch = markdownLinkRegex.exec(text)) !== null) {
+                  markdownLinks.push({
+                    index: mdMatch.index,
+                    length: mdMatch[0].length,
+                    text: mdMatch[1],
+                    url: mdMatch[2]
+                  });
+                }
+                
+                // 處理普通 URL（排除已經在 Markdown 連結中的）
+                const urlRegex = /(https?:\/\/[^\s\)\]\.,;!?]+)/g;
+                let match: RegExpExecArray | null;
+                const linkMatches: Array<{ index: number; url: string; endIndex: number }> = [];
                 
                 while ((match = urlRegex.exec(text)) !== null) {
-                  // 添加連結前的文字
-                  if (match.index > lastIndex) {
-                    const beforeText = text.substring(lastIndex, match.index);
+                  // 檢查這個 URL 是否已經在 Markdown 連結中
+                  const isInMarkdownLink = markdownLinks.some(md => 
+                    match!.index >= md.index && match!.index < md.index + md.length
+                  );
+                  
+                  if (!isInMarkdownLink) {
+                    let url = match[0].trim();
+                    // 移除 URL 末尾的常見標點符號
+                    url = url.replace(/[.,;!?]+$/, '');
+                    // 確保 URL 是完整的
+                    if (url.startsWith('http://') || url.startsWith('https://')) {
+                      linkMatches.push({ 
+                        index: match.index, 
+                        url,
+                        endIndex: match.index + match[0].length
+                      });
+                    }
+                  }
+                }
+                
+                // 將 Markdown 連結轉換為普通連結格式
+                markdownLinks.forEach(md => {
+                  linkMatches.push({
+                    index: md.index,
+                    url: md.url,
+                    endIndex: md.index + md.length
+                  });
+                });
+                
+                // 處理粗體標記
+                const boldRegex = /\*\*([^*]+)\*\*/g;
+                const boldMatches: Array<{ index: number; length: number; text: string }> = [];
+                let boldMatch;
+                
+                while ((boldMatch = boldRegex.exec(text)) !== null) {
+                  boldMatches.push({
+                    index: boldMatch.index,
+                    length: boldMatch[0].length,
+                    text: boldMatch[1]
+                  });
+                }
+                
+                // 合併所有匹配項並排序
+                const allMatches: Array<{ index: number; type: 'link' | 'bold'; url?: string; text?: string; length?: number; endIndex?: number }> = [
+                  ...linkMatches.map(m => ({ ...m, type: 'link' as const })),
+                  ...boldMatches.map(m => ({ ...m, type: 'bold' as const }))
+                ].sort((a, b) => a.index - b.index);
+                
+                let currentIndex = 0;
+                
+                for (const match of allMatches) {
+                  // 添加匹配前的文字
+                  if (match.index > currentIndex) {
+                    const beforeText = text.substring(currentIndex, match.index);
                     if (beforeText.trim()) {
                       parts.push(beforeText);
                     }
                   }
                   
-                  // 添加連結
-                  const url = match[0];
-                  const isLineLink = url.includes('lin.ee');
-                  const isCourseLink = url.includes('ppa.tw');
-                  
-                  let linkText = '🔗 前往連結';
-                  if (isLineLink) linkText = '📱 聯絡我們';
-                  else if (isCourseLink) linkText = '📚 立即報名';
-                  
-                  parts.push({ type: 'link', url, text: linkText });
-                  lastIndex = urlRegex.lastIndex;
+                  // 添加匹配項
+                  if (match.type === 'link') {
+                    const url = match.url!;
+                    const isLineLink = url.includes('lin.ee');
+                    const isCourseLink = url.includes('ppa.tw');
+                    
+                    let linkText = '🔗 前往連結';
+                    if (isLineLink) linkText = '📱 聯絡我們';
+                    else if (isCourseLink) linkText = '📚 立即報名';
+                    
+                    parts.push({ type: 'link', url, text: linkText });
+                    // 使用記錄的結束索引
+                    currentIndex = match.endIndex || (match.index + url.length);
+                  } else if (match.type === 'bold') {
+                    parts.push({ type: 'bold', text: match.text! });
+                    currentIndex = match.index + (match.length || 0);
+                  }
                 }
                 
                 // 添加剩餘文字
-                if (lastIndex < text.length) {
-                  const remaining = text.substring(lastIndex);
+                if (currentIndex < text.length) {
+                  const remaining = text.substring(currentIndex);
                   if (remaining.trim()) {
                     parts.push(remaining);
                   }
@@ -120,8 +194,12 @@ const AIAgent: React.FC = () => {
               };
               
               // 類型守衛函數
-              const isLinkPart = (part: string | { type: 'link'; url: string; text: string }): part is { type: 'link'; url: string; text: string } => {
+              const isLinkPart = (part: string | { type: 'link'; url: string; text: string } | { type: 'bold'; text: string }): part is { type: 'link'; url: string; text: string } => {
                 return typeof part === 'object' && part !== null && 'type' in part && part.type === 'link';
+              };
+              
+              const isBoldPart = (part: string | { type: 'link'; url: string; text: string } | { type: 'bold'; text: string }): part is { type: 'bold'; text: string } => {
+                return typeof part === 'object' && part !== null && 'type' in part && part.type === 'bold';
               };
               
               const messageParts = msg.role === 'model' && hasLinks ? parseMessage(msg.text) : [msg.text];
@@ -155,6 +233,13 @@ const AIAgent: React.FC = () => {
                               {part.text}
                               <ExternalLink className="w-3.5 h-3.5" />
                             </a>
+                          );
+                        }
+                        if (isBoldPart(part)) {
+                          return (
+                            <strong key={i} className="font-bold text-slate-900">
+                              {part.text}
+                            </strong>
                           );
                         }
                         // 現在 TypeScript 知道這裡 part 一定是 string

@@ -35,8 +35,8 @@ const structuredData = {
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer service',
-    email: 'contact@aijob.com.tw',
-    telephone: '+886-2-1234-5678',
+    email: 'aiagentg888@gmail.com',
+    telephone: '+886-2-6605-7111',
     areaServed: 'TW',
     availableLanguage: 'zh-TW',
   },
@@ -44,8 +44,8 @@ const structuredData = {
     '@type': 'PostalAddress',
     addressCountry: 'TW',
     addressLocality: '台北市',
-    addressRegion: '信義區',
-    streetAddress: '信義路五段 7 號',
+    addressRegion: '內湖區',
+    streetAddress: '康寧路三段54號之7 3樓',
   },
 };
 
@@ -57,20 +57,20 @@ const localBusinessData = {
   image: 'https://aijob.com.tw/image/aijoblogo.svg',
   '@id': 'https://aijob.com.tw',
   url: 'https://aijob.com.tw',
-  telephone: '+886-2-1234-5678',
+  telephone: '+886-2-6605-7111',
   priceRange: '$$',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '信義路五段 7 號',
+    streetAddress: '康寧路三段54號之7 3樓',
     addressLocality: '台北市',
-    addressRegion: '信義區',
-    postalCode: '110',
+    addressRegion: '內湖區',
+    postalCode: '114',
     addressCountry: 'TW',
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 25.0330,
-    longitude: 121.5654,
+    latitude: 25.0780,
+    longitude: 121.6110,
   },
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',

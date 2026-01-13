@@ -56,12 +56,12 @@ export default function ToolLibraryPage() {
           </div>
           {/* Hero Section */}
           <section className="relative overflow-hidden pt-8 pb-24 px-4 bg-white">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none">
-            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-indigo-50 rounded-full blur-[120px] opacity-60"></div>
-            <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-cyan-50 rounded-full blur-[120px] opacity-40"></div>
-          </div>
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none">
+              <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-indigo-50 rounded-full blur-[120px] opacity-60"></div>
+              <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-cyan-50 rounded-full blur-[120px] opacity-40"></div>
+            </div>
 
-          <div className="relative max-w-5xl mx-auto text-center space-y-8">
+            <div className="relative max-w-5xl mx-auto text-center space-y-8">
             <div className="space-y-6">
               <span className="inline-flex items-center gap-2 px-5 py-2 bg-indigo-50 text-indigo-600 rounded-2xl border border-indigo-100 text-[10px] font-black uppercase tracking-[0.3em] shadow-sm">
                 <span className="relative flex h-2 w-2">
@@ -81,10 +81,9 @@ export default function ToolLibraryPage() {
                 一鍵啟動您的智能轉型。
               </p>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <ToolLibrary />
+          <ToolLibrary />
 
         {/* Features Section */}
         <section className="py-24 px-4 bg-[#f8fafc]">

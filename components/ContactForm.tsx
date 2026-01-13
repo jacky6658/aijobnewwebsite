@@ -83,8 +83,8 @@ const ContactForm: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-black text-slate-900 mb-1">電子郵件</h4>
-                  <a href="mailto:contact@aijob.com.tw" className="text-slate-600 hover:text-indigo-600 transition-colors">
-                    contact@aijob.com.tw
+                  <a href="mailto:aiagentg888@gmail.com" className="text-slate-600 hover:text-indigo-600 transition-colors">
+                    aiagentg888@gmail.com
                   </a>
                 </div>
               </div>
@@ -95,8 +95,8 @@ const ContactForm: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-black text-slate-900 mb-1">電話</h4>
-                  <a href="tel:+886-2-1234-5678" className="text-slate-600 hover:text-cyan-600 transition-colors">
-                    +886-2-1234-5678
+                  <a href="tel:02-6605-7111" className="text-slate-600 hover:text-cyan-600 transition-colors">
+                    02-6605-7111
                   </a>
                 </div>
               </div>
@@ -108,7 +108,7 @@ const ContactForm: React.FC = () => {
                 <div>
                   <h4 className="font-black text-slate-900 mb-1">地址</h4>
                   <p className="text-slate-600">
-                    台北市信義區信義路五段 7 號
+                    台北市內湖區康寧路三段54號之7 3樓
                   </p>
                 </div>
               </div>

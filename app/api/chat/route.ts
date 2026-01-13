@@ -145,8 +145,8 @@ export async function POST(request: NextRequest) {
 
 **立即聯繫我們：**
 📱 LINE：https://lin.ee/ZTgJbYG
-📧 Email：contact@aijob.com.tw
-📞 電話：+886-2-1234-5678
+📧 Email：aiagentg888@gmail.com
+📞 電話：02-6605-7111
 
 我們會盡快為您提供專業的諮詢服務！`,
         hasLinks: true,
@@ -165,7 +165,7 @@ export async function POST(request: NextRequest) {
         { role: 'user', parts: [{ text: message }] }
       ],
       config: {
-        systemInstruction: `你現在是 AIJOB 的首席顧問。AIJOB 不是人力銀行，而是一個專注於『客製化 AI 系統開發』與『AI 實戰培訓』的平台。
+        systemInstruction: `你現在是 AIJob 小助手。AIJOB 是一個專注於『客製化 AI 系統開發』與『AI 實戰培訓』的平台，我們不提供人力招募服務，而是幫助企業和個人透過 AI 技術提升效率與競爭力。
 
 【關於課程】
 我們提供以下三門精選課程：

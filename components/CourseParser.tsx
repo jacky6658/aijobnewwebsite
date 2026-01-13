@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { COURSES } from '../constants';
 import * as Icons from 'lucide-react';
+import { SkeletonCard } from './ui/Skeleton';
 
 const DynamicIcon = ({ name, className }: { name: string; className?: string }) => {
   const iconName = name.split('-').map(part => part.charAt(0).toUpperCase() + part.slice(1)).join('') as keyof typeof Icons;
@@ -56,14 +57,7 @@ const CourseParser: React.FC = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-white border-2 border-indigo-100 rounded-[3rem] overflow-hidden flex flex-col h-full min-h-[600px] animate-pulse">
-                <div className="aspect-[4/3] bg-slate-200"></div>
-                <div className="p-10 space-y-3">
-                  <div className="h-6 bg-slate-200 rounded"></div>
-                  <div className="h-3 bg-slate-200 rounded"></div>
-                  <div className="h-3 bg-slate-200 rounded w-3/4"></div>
-                </div>
-              </div>
+              <SkeletonCard key={i} />
             ))}
           </div>
         </div>
@@ -115,7 +109,7 @@ const CourseParser: React.FC = () => {
                     <a 
                       href={course.url} 
                       rel="noopener noreferrer" 
-                      className="w-full py-4 bg-slate-900 hover:bg-indigo-600 text-white rounded-2xl font-bold text-sm shadow-xl flex items-center justify-center gap-2 transition-all active:scale-95"
+                      className="w-full py-4 bg-slate-900 hover:bg-indigo-600 text-white rounded-2xl font-bold text-sm shadow-xl flex items-center justify-center gap-2 transition-all active:scale-95 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
                       前往學習平台 <DynamicIcon name="external-link" className="w-4 h-4" />
                     </a>

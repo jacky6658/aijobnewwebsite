@@ -66,13 +66,8 @@ const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/tool-library" className="text-slate-600 hover:text-indigo-600 transition-colors">
-                  AI工具庫
-                </Link>
-              </li>
-              <li>
-                <Link href="/apps" className="text-slate-600 hover:text-indigo-600 transition-colors">
-                  AI小程式
+                <Link href="/tools" className="text-slate-600 hover:text-indigo-600 transition-colors">
+                  AI工具與應用
                 </Link>
               </li>
               <li>
@@ -121,20 +116,20 @@ const Footer: React.FC = () => {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-indigo-600 mt-0.5 flex-shrink-0" />
-                <a href="mailto:contact@aijob.com.tw" className="text-slate-600 hover:text-indigo-600 transition-colors">
-                  contact@aijob.com.tw
+                <a href="mailto:aiagentg888@gmail.com" className="text-slate-600 hover:text-indigo-600 transition-colors">
+                  aiagentg888@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-indigo-600 mt-0.5 flex-shrink-0" />
-                <a href="tel:+886-2-1234-5678" className="text-slate-600 hover:text-indigo-600 transition-colors">
-                  +886-2-1234-5678
+                <a href="tel:02-6605-7111" className="text-slate-600 hover:text-indigo-600 transition-colors">
+                  02-6605-7111
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-indigo-600 mt-0.5 flex-shrink-0" />
                 <span className="text-slate-600">
-                  台北市信義區<br />信義路五段 7 號
+                  台北市內湖區<br />康寧路三段54號之7 3樓
                 </span>
               </li>
             </ul>

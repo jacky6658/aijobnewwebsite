@@ -21,8 +21,7 @@ const ContactForm: React.FC = () => {
     subject: '',
     message: '',
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success'>('idle');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -31,28 +30,34 @@ const ContactForm: React.FC = () => {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
 
-    // 模擬表單提交（實際應該連接到後端 API）
-    try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setSubmitStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        company: '',
-        subject: '',
-        message: '',
-      });
-    } catch (error) {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
+    const subjectMap: Record<string, string> = {
+      consultation: 'AI 系統諮詢',
+      training: '培訓課程',
+      partnership: '商務合作',
+      support: '技術支援',
+      other: '其他',
+    };
+
+    const subjectLabel = subjectMap[formData.subject] || formData.subject;
+
+    const body = [
+      `姓名：${formData.name}`,
+      `電話：${formData.phone || '未填寫'}`,
+      `公司：${formData.company || '未填寫'}`,
+      `詢問類型：${subjectLabel}`,
+      '',
+      `訊息內容：`,
+      formData.message,
+    ].join('\n');
+
+    const mailtoUrl = `mailto:aiagentg888@gmail.com?subject=${encodeURIComponent(`[AIJOB 詢問] ${subjectLabel} - ${formData.name}`)}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailtoUrl;
+    setSubmitStatus('success');
+    setFormData({ name: '', email: '', phone: '', company: '', subject: '', message: '' });
   };
 
   return (
@@ -243,28 +248,12 @@ const ContactForm: React.FC = () => {
                 </div>
               )}
 
-              {submitStatus === 'error' && (
-                <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-700">
-                  發送失敗，請稍後再試或直接透過電子郵件聯繫我們。
-                </div>
-              )}
-
               <button
                 type="submit"
-                disabled={isSubmitting}
-                className="w-full py-4 bg-slate-900 hover:bg-indigo-600 text-white rounded-xl font-black text-base shadow-xl flex items-center justify-center gap-2 transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-4 bg-slate-900 hover:bg-indigo-600 text-white rounded-xl font-black text-base shadow-xl flex items-center justify-center gap-2 transition-all active:scale-95"
               >
-                {isSubmitting ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    發送中...
-                  </>
-                ) : (
-                  <>
-                    <Send className="w-5 h-5" />
-                    送出訊息
-                  </>
-                )}
+                <Send className="w-5 h-5" />
+                送出訊息
               </button>
             </form>
           </div>

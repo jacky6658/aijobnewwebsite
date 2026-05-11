@@ -2,7 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['images.unsplash.com', 'static.pressplay.cc'],
+    remotePatterns: [
+      { hostname: 'images.unsplash.com' },
+      { hostname: 'static.pressplay.cc' },
+    ],
     formats: ['image/avif', 'image/webp'],
   },
   compress: true,
@@ -10,7 +13,6 @@ const nextConfig = {
   generateBuildId: async () => {
     return 'aijob-' + Date.now();
   },
-  // 增加構建超時時間
   staticPageGenerationTimeout: 120,
 };
 
